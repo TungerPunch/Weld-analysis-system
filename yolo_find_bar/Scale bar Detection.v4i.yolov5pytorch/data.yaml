@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['Scale-bar']
+
+roboflow:
+  workspace: diplom-nqy06
+  project: scale-bar-detection
+  version: 4
+  license: Public Domain
+  url: https://universe.roboflow.com/diplom-nqy06/scale-bar-detection/dataset/4
