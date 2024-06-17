@@ -1,37 +1,50 @@
 import glob
 import pandas as pd
-from inference import inference
+from src.inference import inference
+import numpy as np
+import flask
+from PIL import Image
+import io
+from flask import Flask
+app = Flask(__name__)
+import json
 
 
-def main():
-    '''
-    Функция для запуска программы
-    '''
+# Метод для использования вручную
 
-    pathes = glob.glob('Data\\actual\\*.jpg')
-    
-    columns = ['Путь',
-               'Ширина', 
-               'Глубина', 
-               'Линейное смещение', 
-               'Уровень качества ',
-               'Незаполненная разделка кромок',
-               'Уровень качества 2',
-               'Подрез',
-               'Уровень качества 3']
-    df = pd.DataFrame(columns=columns)
-    problem_pathes = []
-    for path in pathes[:]:
-        try:
-            row = inference(path)
-            print('Done', path)
-            df.loc[len(df)] = row.loc[0]
-        except Exception as e:
-            print(path, e, sep='\n')
-            problem_pathes.append(path)
-    
-    print(problem_pathes)
-    df.to_csv('result/auto_parameters2.csv')
+@app.route('/', methods=['GET', 'POST'])
+def upload_file():
+    if flask.request.method == 'POST':
+        if 'file' not in flask.request.files:
+            return flask.redirect(flask.request.url)
+        file = flask.request.files.get('file')
+        if not file:
+            return 'There is no file!'
+        # Читаем файл
+        image_bytes = file.read()
+        # Трасформируем к массиву
+        image = np.array(Image.open(io.BytesIO(image_bytes)))
+        # Находим результат
+        result = inference(image)
+        return flask.jsonify(result)
+    else:
+        return flask.render_template('index.html')
+
+# Метод для подключения по API
+
+@app.route("/predict", methods=["GET", "POST"])
+def predict():
+    data = {"success": False}
+    if flask.request.files.get("image"):
+        image = flask.request.files["image"].read()
+        image = np.array(Image.open(io.BytesIO(image)))
+
+        result = inference(image)
+
+        data["response"] = result
+        data["success"] = True
+    return flask.jsonify(data)
+
 
 if __name__ == '__main__':
-    main()
+    app.run(debug=True)

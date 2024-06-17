@@ -1,6 +1,7 @@
-matplotlib
+matplotlib==3.9.0
 numpy==1.23.5
-opencv-python
-torch
-ultralytics==8.0.232
-pytesseract
+opencv-python==4.10.0.82
+torch==2.3.1
+ultralytics==8.2.28
+pytesseract==0.3.10
+flask==3.0.3
