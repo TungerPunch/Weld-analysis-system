@@ -39,12 +39,15 @@ python main.py
 
 #### Дефекты:
 ![image](https://github.com/TungerPunch/Weld-analysis-system/assets/86575050/4578da87-03a2-4ee4-b1e1-6962fd6f8c6c)
+
 Линейное смещение
 
-![image](https://github.com/TungerPunch/Weld-analysis-system/assets/86575050/c186e706-57fb-4e85-b5f1-ddd18fb9a1d0)
+![image](https://github.com/TungerPunch/Weld-analysis-system/assets/86575050/3aa75f38-3eb3-4093-93c3-788e35aee725)
+
 Незаполенная разделка кромок
 
 ![image](https://github.com/TungerPunch/Weld-analysis-system/assets/86575050/d2e4d306-eec3-4dce-ada2-f82f5dcf54ff)
+
 Подрез
 
 ### Веб-приложение
