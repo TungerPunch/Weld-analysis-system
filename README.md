@@ -9,5 +9,8 @@ python main.py
 
 ```
 
+### Схема работы системы:
+
+![image](https://github.com/TungerPunch/Weld-analysis-system/assets/86575050/94121e3c-4a2f-4899-8358-6d22ddfe3f6d)
 
 
