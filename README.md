@@ -4,7 +4,10 @@
 Для запуска приложения:
 
 '''powershell 
+
 python main.py
+
+
 '''
 
 
